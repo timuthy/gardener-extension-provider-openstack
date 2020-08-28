@@ -15,7 +15,6 @@
 package worker
 
 import (
-	"github.com/gardener/gardener-extension-provider-openstack/pkg/openstack"
 	"github.com/gardener/gardener/extensions/pkg/controller/worker"
 
 	machinescheme "github.com/gardener/machine-controller-manager/pkg/client/clientset/versioned/scheme"
@@ -52,7 +51,7 @@ func AddToManagerWithOptions(mgr manager.Manager, opts AddOptions) error {
 		Actuator:          NewActuator(),
 		ControllerOptions: opts.Controller,
 		Predicates:        worker.DefaultPredicates(opts.IgnoreOperationAnnotation),
-		Type:              openstack.Type,
+		Type:              "ovh",
 	})
 }
 

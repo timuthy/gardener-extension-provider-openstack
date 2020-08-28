@@ -28,12 +28,13 @@ import (
 type Credentials struct {
 	DomainName string
 	TenantName string
+	TenantID   string
 	Username   string
 	Password   string
 	AuthURL    string
 }
 
-// GetCredentials computes for a given context and infrastructure the corresponding credentials object.
+// GetCredentialsBySecretBinding computes for a given context and infrastructure the corresponding credentials object.
 func GetCredentialsBySecretBinding(ctx context.Context, c client.Client, secretBindingKey client.ObjectKey) (*Credentials, error) {
 	binding := &gardencorev1beta1.SecretBinding{}
 	if err := c.Get(ctx, secretBindingKey, binding); err != nil {
@@ -65,6 +66,10 @@ func ExtractCredentials(secret *corev1.Secret) (*Credentials, error) {
 	if err != nil {
 		return nil, err
 	}
+	tenantID, err := getRequired(secret.Data, TenantID)
+	if err != nil {
+		return nil, err
+	}
 	userName, err := getRequired(secret.Data, UserName)
 	if err != nil {
 		return nil, err
@@ -78,6 +83,7 @@ func ExtractCredentials(secret *corev1.Secret) (*Credentials, error) {
 	return &Credentials{
 		DomainName: domainName,
 		TenantName: tenantName,
+		TenantID:   tenantID,
 		Username:   userName,
 		Password:   password,
 		AuthURL:    string(authURL),

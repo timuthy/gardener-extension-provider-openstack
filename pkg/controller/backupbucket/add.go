@@ -15,7 +15,6 @@
 package backupbucket
 
 import (
-	"github.com/gardener/gardener-extension-provider-openstack/pkg/openstack"
 	"github.com/gardener/gardener/extensions/pkg/controller/backupbucket"
 
 	"sigs.k8s.io/controller-runtime/pkg/controller"
@@ -42,7 +41,7 @@ func AddToManagerWithOptions(mgr manager.Manager, opts AddOptions) error {
 		Actuator:          newActuator(),
 		ControllerOptions: opts.Controller,
 		Predicates:        backupbucket.DefaultPredicates(opts.IgnoreOperationAnnotation),
-		Type:              openstack.Type,
+		Type:              "ovh",
 	})
 }
 

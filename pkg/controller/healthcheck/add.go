@@ -56,7 +56,7 @@ func RegisterHealthChecks(mgr manager.Manager, opts healthcheck.DefaultAddArgs) 
 	}
 
 	if err := healthcheck.DefaultRegistration(
-		openstack.Type,
+		"ovh",
 		extensionsv1alpha1.SchemeGroupVersion.WithKind(extensionsv1alpha1.ControlPlaneResource),
 		func() runtime.Object { return &extensionsv1alpha1.ControlPlaneList{} },
 		func() extensionsv1alpha1.Object { return &extensionsv1alpha1.ControlPlane{} },
@@ -91,7 +91,7 @@ func RegisterHealthChecks(mgr manager.Manager, opts healthcheck.DefaultAddArgs) 
 	}
 
 	return healthcheck.DefaultRegistration(
-		openstack.Type,
+		"ovh",
 		extensionsv1alpha1.SchemeGroupVersion.WithKind(extensionsv1alpha1.WorkerResource),
 		func() runtime.Object { return &extensionsv1alpha1.WorkerList{} },
 		func() extensionsv1alpha1.Object { return &extensionsv1alpha1.Worker{} },

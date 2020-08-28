@@ -15,7 +15,6 @@
 package backupentry
 
 import (
-	"github.com/gardener/gardener-extension-provider-openstack/pkg/openstack"
 	"github.com/gardener/gardener/extensions/pkg/controller/backupentry"
 	"github.com/gardener/gardener/extensions/pkg/controller/backupentry/genericactuator"
 
@@ -46,7 +45,7 @@ func AddToManagerWithOptions(mgr manager.Manager, opts AddOptions) error {
 		Actuator:          genericactuator.NewActuator(newActuator(), logger),
 		ControllerOptions: opts.Controller,
 		Predicates:        backupentry.DefaultPredicates(opts.IgnoreOperationAnnotation),
-		Type:              openstack.Type,
+		Type:              "ovh",
 	})
 }
 

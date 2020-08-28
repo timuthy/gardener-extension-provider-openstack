@@ -15,7 +15,6 @@
 package infrastructure
 
 import (
-	"github.com/gardener/gardener-extension-provider-openstack/pkg/openstack"
 	"github.com/gardener/gardener/extensions/pkg/controller/infrastructure"
 
 	"sigs.k8s.io/controller-runtime/pkg/controller"
@@ -42,7 +41,7 @@ func AddToManagerWithOptions(mgr manager.Manager, options AddOptions) error {
 		Actuator:          NewActuator(),
 		ControllerOptions: options.Controller,
 		Predicates:        infrastructure.DefaultPredicates(options.IgnoreOperationAnnotation),
-		Type:              openstack.Type,
+		Type:              "ovh",
 	})
 }
 

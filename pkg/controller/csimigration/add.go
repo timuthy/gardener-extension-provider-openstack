@@ -15,8 +15,6 @@
 package csimigration
 
 import (
-	"github.com/gardener/gardener-extension-provider-openstack/pkg/openstack"
-
 	"github.com/gardener/gardener/extensions/pkg/controller/csimigration"
 	"sigs.k8s.io/controller-runtime/pkg/controller"
 	"sigs.k8s.io/controller-runtime/pkg/manager"
@@ -37,7 +35,7 @@ func AddToManagerWithOptions(mgr manager.Manager, opts AddOptions) error {
 	return csimigration.Add(mgr, csimigration.AddArgs{
 		ControllerOptions:             opts.Controller,
 		CSIMigrationKubernetesVersion: "1.19",
-		Type:                          openstack.Type,
+		Type:                          "ovh",
 		StorageClassNameToLegacyProvisioner: map[string]string{
 			"default":       "kubernetes.io/cinder",
 			"default-class": "kubernetes.io/cinder",

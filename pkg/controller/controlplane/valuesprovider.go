@@ -410,6 +410,7 @@ func getConfigChartValues(
 		"kubernetesVersion": cluster.Shoot.Spec.Kubernetes.Version,
 		"domainName":        c.DomainName,
 		"tenantName":        c.TenantName,
+		"tenantID":          c.TenantID,
 		"username":          c.Username,
 		"password":          c.Password,
 		"region":            cp.Spec.Region,
@@ -420,6 +421,7 @@ func getConfigChartValues(
 		"dhcpDomain":        cloudProfileConfig.DHCPDomain,
 		"requestTimeout":    cloudProfileConfig.RequestTimeout,
 		"useOctavia":        cloudProfileConfig.UseOctavia != nil && *cloudProfileConfig.UseOctavia,
+		"clusterName":       cluster.ObjectMeta.Name,
 	}
 
 	if cpConfig.LoadBalancerClasses == nil {

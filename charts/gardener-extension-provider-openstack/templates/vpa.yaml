@@ -2,7 +2,7 @@
 apiVersion: "autoscaling.k8s.io/v1beta2"
 kind: VerticalPodAutoscaler
 metadata:
-  name: {{ include "name" . }}-vpa
+  name: gardener-extension-provider-ovh-vpa
   namespace: {{ .Release.Namespace }}
 spec:
   targetRef:

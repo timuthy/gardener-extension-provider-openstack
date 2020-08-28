@@ -51,7 +51,7 @@ func AddToManagerWithOptions(mgr manager.Manager, opts AddOptions) error {
 			imagevector.ImageVector(), "", nil, mgr.GetWebhookServer().Port, logger),
 		ControllerOptions: opts.Controller,
 		Predicates:        controlplane.DefaultPredicates(opts.IgnoreOperationAnnotation),
-		Type:              openstack.Type,
+		Type:              "ovh",
 	})
 }
 
